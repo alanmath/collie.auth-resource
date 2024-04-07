@@ -21,3 +21,9 @@ collie:
     issuer: "In5pEr"
     secretKey: "nPeHcqPFhcHhy9fIEgjYSEWBQaNhVtyYKqo1jR97H23x75qI8Tj33c5AZumnPsoF8QRLjxfC5bgKoK5uHqNmSffMjm2qQXMghW4ju4zrMxAx9Dlpq83HGgo05H8QEuue"
     duration: 31536000000 # 365 days in miliseconds
+    
+springdoc:
+  api-docs:
+    path: /squad/v3/api-docs
+  swagger-ui:
+    path: /squad/swagger-ui.html

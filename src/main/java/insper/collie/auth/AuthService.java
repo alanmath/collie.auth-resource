@@ -57,5 +57,4 @@ public class AuthService {
     public Token solve(String token) {
         return jwtService.getToken(token);
     }
-    
 }
