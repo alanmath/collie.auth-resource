@@ -23,7 +23,7 @@ public class AuthResource implements AuthController {
     @Autowired
     private AuthService authService;
 
-    @PostMapping("/register")
+    // @PostMapping("/register")
     @Operation(summary = "Registrar um novo usuário", description = "Cria uma nova conta de usuário e retorna o ID do usuário criado.",
         responses = {
             @ApiResponse(responseCode = "201", description = "Usuário registrado com sucesso"),
@@ -47,7 +47,7 @@ public class AuthResource implements AuthController {
             .build();
     }
 
-    @PostMapping("/authenticate")
+    // @PostMapping("/authenticate")
     @Operation(summary = "Autenticar usuário", description = "Autentica o usuário e retorna um token de acesso.",
         responses = {
             @ApiResponse(responseCode = "200", description = "Usuário autenticado com sucesso", content = @Content(schema = @Schema(implementation = LoginOut.class))),
@@ -57,7 +57,7 @@ public class AuthResource implements AuthController {
         return ResponseEntity.ok(authService.authenticate(in.email(), in.password()));
     }
 
-    @PostMapping("/solve")
+    // @PostMapping("/solve")
     @Operation(summary = "Resolver token", description = "Valida o token e retorna informações do usuário.",
         responses = {
             @ApiResponse(responseCode = "200", description = "Token resolvido com sucesso", content = @Content(schema = @Schema(implementation = SolveOut.class))),
