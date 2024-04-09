@@ -45,14 +45,16 @@ public class AuthResource implements AuthController {
             .build();
     }
 
+    @Override
     @Operation(summary = "Autenticar usuário", description = "Autentica o usuário e retorna um token de acesso.",
         responses = {
             @ApiResponse(responseCode = "200", description = "Usuário autenticado com sucesso", content = @Content(schema = @Schema(implementation = LoginOut.class))),
             @ApiResponse(responseCode = "401", description = "Credenciais inválidas")
         })
-    public ResponseEntity<LoginOut> authenticate(CredentialIn in) {
-        return ResponseEntity.ok(authService.authenticate(in.email(), in.password()));
+    public ResponseEntity<LoginOut> authenticate(CredentialIn in, String secret) {
+        return ResponseEntity.ok(authService.authenticate(in.email(), in.password(), secret ));
     }
+
 
     @Operation(summary = "Resolver token", description = "Valida o token e retorna informações do usuário.",
         responses = {

@@ -35,7 +35,7 @@ public class AuthService {
         return response.getBody().id();
     }
 
-    public LoginOut authenticate(String email, String password) {
+    public LoginOut authenticate(String email, String password, String secret) {
         ResponseEntity<AccountOut> response = accountController.login(LoginIn.builder()
             .email(email)
             .password(password)
@@ -45,10 +45,20 @@ public class AuthService {
         if (null == response.getBody()) throw new IllegalArgumentException("Invalid credentials");
         final AccountOut account = response.getBody();
 
-        // Cria um token JWT
-        @SuppressWarnings("null")
-        final String token = jwtService.create(account.id(), account.name(), "regular");
 
+        String tokenEntrada = "";
+        if (secret.equals("admin")) {
+            // Cria um token JWT com um segredo
+            
+            tokenEntrada = jwtService.create(account.id(), account.name(), "ADMIN");
+        }  else {
+            // Cria um token JWT
+            
+            tokenEntrada = jwtService.create(account.id(), account.name(), "regular");
+        }
+        @SuppressWarnings("null")
+        final String token = tokenEntrada;
+        
         return LoginOut.builder()
             .token(token)
             .build();
