@@ -6,9 +6,14 @@ pipeline {
                 echo 'Auth resource'
             }
         }
-        stage ('Build interface'){
+        stage ('Build interface auth'){
             steps {
                 build job: 'auth', wait: true
+            }
+        }
+        stage ('Build interface account'){
+            steps {
+                build job: 'account', wait: true
             }
         }
         stage ('Build') {
